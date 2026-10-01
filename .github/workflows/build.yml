@@ -52,7 +52,7 @@ jobs:
       - name: Run PostgreSQL tests
         timeout-minutes: 10
         env:
-          DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports[5432] }}/dataset"
+          DATABASE_URL: "postgresql+psycopg2://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports[5432] }}/dataset"
           PGOPTIONS: "-c lock_timeout=10s -c deadlock_timeout=1s"
         run: |
           make test
